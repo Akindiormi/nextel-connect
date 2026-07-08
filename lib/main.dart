@@ -10,10 +10,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Nextel Connect',
+      title: 'Nextel',
       home: Scaffold(
         body: Center(
-          child: Text('Nextel Connect'),
+          child: Text('Nextel'),
         ),
       ),
     );
