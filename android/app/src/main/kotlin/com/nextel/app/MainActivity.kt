@@ -1,4 +1,4 @@
-package com.nextelconnect.app
+package com.nextel.app
 
 import io.flutter.embedding.android.FlutterActivity
 
