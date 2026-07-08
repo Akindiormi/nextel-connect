@@ -31,7 +31,16 @@ jobs:
 
       - name: Decode keystore
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/nextel-keystore.jks
+          # Strip any whitespace/newlines the base64 may have picked up when the
+          # secret was pasted, so accidental line-wrapping cannot corrupt the file.
+          printf '%s' "${{ secrets.KEYSTORE_BASE64 }}" | tr -d '[:space:]' | base64 --decode > android/app/nextel-keystore.jks
+
+      - name: Verify keystore is readable
+        run: |
+          keytool -list \
+            -keystore android/app/nextel-keystore.jks \
+            -storepass "${{ secrets.STORE_PASSWORD }}" \
+            -alias "${{ secrets.KEY_ALIAS }}"
 
       - name: Create key.properties
         run: |
