@@ -93,6 +93,9 @@ class _PrimaryButtonState extends State<PrimaryButton> {
                         Flexible(
                           child: Text(
                             widget.label,
+                            maxLines: 1,
+                            softWrap: false,
+                            overflow: TextOverflow.fade,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,

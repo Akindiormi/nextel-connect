@@ -194,7 +194,7 @@ class _UnlockedCard extends StatelessWidget {
                 const _Benefit('Stay motivated with a like-minded community'),
                 const SizedBox(height: 16),
                 PrimaryButton(
-                  label: 'Join Telegram Community',
+                  label: 'Join Telegram Group',
                   icon: Icons.telegram_rounded,
                   onPressed: onJoin,
                 ),

@@ -4,6 +4,7 @@ import '../../theme/app_theme.dart';
 import '../../data/courses_data.dart';
 import '../../models/course.dart';
 import '../../services/progress_service.dart';
+import '../../widgets/animations/entrance.dart';
 import '../../widgets/common/app_cards.dart';
 import '../../widgets/common/app_input.dart';
 import '../../widgets/common/section_header.dart';
@@ -140,14 +141,17 @@ class _CoursesScreenState extends State<CoursesScreen> {
           ],
 
           SectionHeader(title: 'All Courses'),
-          ..._filtered.map((c) => Padding(
+          ...staggered([
+            for (final c in _filtered)
+              Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: CourseCard(
                   course: c,
                   progress: _progress.courseProgress(c),
                   onTap: () => _open(c),
                 ),
-              )),
+              ),
+          ]),
         ],
       ),
     );

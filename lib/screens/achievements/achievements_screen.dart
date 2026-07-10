@@ -82,28 +82,24 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
 
             SectionHeader(title: 'Learning Path'),
             GlassCard(
-              child: SizedBox(
-                height: kCourses.length * 100.0,
-                child: LearningPathMap(
-                  rowHeight: 100,
-                  nodes: [
-                    for (final c in kCourses)
-                      PathNode(
-                        title: c.title,
-                        icon: c.icon,
-                        progress: _progress.courseProgress(c),
-                        state: _progress.isCourseComplete(c)
-                            ? PathState.completed
-                            : (_progress.courseProgress(c) > 0
-                                ? PathState.current
-                                : PathState.locked),
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (_) => CourseDetailScreen(course: c)),
-                        ),
+              child: LearningPathMap(
+                nodes: [
+                  for (final c in kCourses)
+                    PathNode(
+                      title: c.title,
+                      icon: c.icon,
+                      progress: _progress.courseProgress(c),
+                      state: _progress.isCourseComplete(c)
+                          ? PathState.completed
+                          : (_progress.courseProgress(c) > 0
+                              ? PathState.current
+                              : PathState.locked),
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (_) => CourseDetailScreen(course: c)),
                       ),
-                  ],
-                ),
+                    ),
+                ],
               ),
             ),
             const SizedBox(height: 24),

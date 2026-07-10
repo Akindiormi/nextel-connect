@@ -9,6 +9,8 @@ import '../../services/progress_service.dart';
 import '../../services/user_service.dart';
 import '../../widgets/common/app_cards.dart';
 import '../../widgets/common/section_header.dart';
+import '../../widgets/animations/entrance.dart';
+import '../../widgets/animations/xp_counter.dart';
 import '../../widgets/illustrations/streak_flame.dart';
 import '../../widgets/illustrations/learning_path.dart';
 import '../courses/course_detail_screen.dart';
@@ -114,58 +116,89 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 24),
 
           // Continue learning card
-          _ContinueLearningCard(
-            course: course,
-            lesson: lesson,
-            completed: completed,
-            onContinue: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => LessonScreen(lesson: lesson, course: course),
+          FadeSlideIn(
+            delay: const Duration(milliseconds: 40),
+            child: _ContinueLearningCard(
+              course: course,
+              lesson: lesson,
+              completed: completed,
+              onContinue: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => LessonScreen(lesson: lesson, course: course),
+                ),
               ),
             ),
           ),
           const SizedBox(height: 20),
 
           // Today's tip
-          _TipCard(tip: tipForDate()),
+          FadeSlideIn(
+            delay: const Duration(milliseconds: 120),
+            child: _TipCard(tip: tipForDate()),
+          ),
           const SizedBox(height: 20),
 
           // Stats row
-          Row(
-            children: [
-              Expanded(
-                child: GlassCard(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                  radius: 20,
-                  child: Row(
-                    children: [
-                      StreakFlame(streak: _progress.streak, size: 44),
-                      const SizedBox(width: 8),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text('${_progress.streak}',
-                              style: AppText.number(context, size: 22)),
-                          Text('Day Streak',
-                              style: AppText.label(context, size: 11)),
-                        ],
-                      ),
-                    ],
+          FadeSlideIn(
+            delay: const Duration(milliseconds: 200),
+            child: Row(
+              children: [
+                Expanded(
+                  child: GlassCard(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
+                    radius: 20,
+                    child: Row(
+                      children: [
+                        StreakFlame(streak: _progress.streak, size: 44),
+                        const SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            XpCounter(value: _progress.streak, size: 22),
+                            Text('Day Streak',
+                                style: AppText.label(context, size: 11)),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: StatChip(
-                  icon: Icons.bolt_rounded,
-                  iconColor: AppColors.gold,
-                  value: '${_progress.xp}',
-                  label: 'Total XP',
+                const SizedBox(width: 14),
+                Expanded(
+                  child: GlassCard(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
+                    radius: 20,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 44,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            color: AppColors.gold.withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(Icons.bolt_rounded,
+                              color: AppColors.gold, size: 24),
+                        ),
+                        const SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            XpCounter(value: _progress.xp, size: 22),
+                            Text('Total XP',
+                                style: AppText.label(context, size: 11)),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const SizedBox(height: 24),
 
@@ -245,30 +278,30 @@ class _HomeScreenState extends State<HomeScreen> {
               MaterialPageRoute(builder: (_) => const ProgressScreen()),
             ),
           ),
-          GlassCard(
-            child: SizedBox(
-              height: 300,
-              child: LearningPathMap(
-                rowHeight: 92,
-                nodes: [
-                  for (final c in kCourses.take(3))
-                    PathNode(
-                      title: c.title,
-                      icon: c.icon,
-                      progress: _progress.courseProgress(c),
-                      state: _progress.isCourseComplete(c)
-                          ? PathState.completed
-                          : (_progress.courseProgress(c) > 0
-                              ? PathState.current
-                              : PathState.locked),
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (_) => CourseDetailScreen(course: c)),
-                      ),
+          FadeSlideIn(
+            delay: const Duration(milliseconds: 120),
+            child: GlassCard(
+            child: LearningPathMap(
+              rowHeight: 124,
+              nodes: [
+                for (final c in kCourses.take(4))
+                  PathNode(
+                    title: c.title,
+                    icon: c.icon,
+                    progress: _progress.courseProgress(c),
+                    state: _progress.isCourseComplete(c)
+                        ? PathState.completed
+                        : (_progress.courseProgress(c) > 0
+                            ? PathState.current
+                            : PathState.locked),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (_) => CourseDetailScreen(course: c)),
                     ),
-                ],
-              ),
+                  ),
+              ],
             ),
+          ),
           ),
         ],
       ),

@@ -8,6 +8,8 @@ import '../../services/progress_service.dart';
 import '../../services/user_service.dart';
 import '../../widgets/common/app_cards.dart';
 import '../../widgets/common/section_header.dart';
+import '../../widgets/animations/entrance.dart';
+import '../../widgets/animations/xp_counter.dart';
 import '../../widgets/illustrations/xp_orbit.dart';
 import '../achievements/achievements_screen.dart';
 import '../progress/progress_screen.dart';
@@ -138,7 +140,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(height: 16),
 
           // hero card
-          GlassCard(
+          FadeSlideIn(
+            child: GlassCard(
             child: Column(
               children: [
                 Container(
@@ -189,43 +192,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
+          ),
           const SizedBox(height: 16),
 
-          // stat pills
-          Row(
+          // stat pills — balanced vertical tiles that count up
+          FadeSlideIn(
+            delay: const Duration(milliseconds: 100),
+            child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                child: StatChip(
+                child: _ProfileStat(
                   icon: Icons.bolt_rounded,
-                  iconColor: AppColors.gold,
-                  value: '${_progress.xp}',
+                  color: AppColors.gold,
+                  value: _progress.xp,
                   label: 'Total XP',
                 ),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 12),
               Expanded(
-                child: StatChip(
+                child: _ProfileStat(
                   icon: Icons.local_fire_department_rounded,
-                  iconColor: const Color(0xFFEF4444),
-                  value: '${_progress.streak}',
+                  color: const Color(0xFFEF4444),
+                  value: _progress.streak,
                   label: 'Streak',
                 ),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 12),
               Expanded(
-                child: StatChip(
+                child: _ProfileStat(
                   icon: Icons.workspace_premium_rounded,
-                  iconColor: AppColors.accentEmerald,
-                  value: '$coursesDone',
+                  color: AppColors.accentEmerald,
+                  value: coursesDone,
                   label: 'Courses',
                 ),
               ),
             ],
           ),
+          ),
           const SizedBox(height: 20),
 
           // XP progress card
-          GlassCard(
+          FadeSlideIn(
+            delay: const Duration(milliseconds: 160),
+            child: GlassCard(
             gradient: AppGradients.greenHeader,
             child: Row(
               children: [
@@ -254,6 +264,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ],
             ),
+          ),
           ),
           const SizedBox(height: 24),
 
@@ -521,6 +532,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       );
     }
+  }
+}
+
+/// A balanced vertical stat tile: centered icon badge, count-up number, label.
+class _ProfileStat extends StatelessWidget {
+  final IconData icon;
+  final Color color;
+  final int value;
+  final String label;
+
+  const _ProfileStat({
+    required this.icon,
+    required this.color,
+    required this.value,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GlassCard(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      radius: 20,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: color, size: 22),
+          ),
+          const SizedBox(height: 10),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: XpCounter(value: value, size: 22),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: AppText.label(context, size: 11),
+          ),
+        ],
+      ),
+    );
   }
 }
 
