@@ -199,7 +199,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           FadeSlideIn(
             delay: const Duration(milliseconds: 100),
             child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 child: _ProfileStat(
@@ -567,10 +566,7 @@ class _ProfileStat extends StatelessWidget {
             child: Icon(icon, color: color, size: 22),
           ),
           const SizedBox(height: 10),
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            child: XpCounter(value: value, size: 22),
-          ),
+          XpCounter(value: value, size: 20),
           const SizedBox(height: 2),
           Text(
             label,
@@ -607,20 +603,24 @@ class _LinkTile extends StatelessWidget {
     final palette = AppPalette.of(context);
     return Column(
       children: [
-        ListTile(
-          onTap: onTap,
-          leading: Icon(icon, color: color ?? AppColors.accentEmerald),
-          title: Text(label,
-              style: AppText.body(context,
-                  size: 15, color: color ?? palette.textPrimary)),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (trailing != null)
-                Text(trailing!, style: AppText.label(context, size: 13)),
-              const SizedBox(width: 4),
-              Icon(Icons.chevron_right_rounded, color: palette.textSecondary),
-            ],
+        Material(
+          color: Colors.transparent,
+          child: ListTile(
+            onTap: onTap,
+            leading: Icon(icon, color: color ?? AppColors.accentEmerald),
+            title: Text(label,
+                style: AppText.body(context,
+                    size: 15, color: color ?? palette.textPrimary)),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (trailing != null)
+                  Text(trailing!, style: AppText.label(context, size: 13)),
+                const SizedBox(width: 4),
+                Icon(Icons.chevron_right_rounded,
+                    color: palette.textSecondary),
+              ],
+            ),
           ),
         ),
         if (!isLast)
@@ -648,13 +648,16 @@ class _SwitchTile extends StatelessWidget {
     final palette = AppPalette.of(context);
     return Column(
       children: [
-        ListTile(
-          leading: Icon(icon, color: AppColors.accentEmerald),
-          title: Text(label, style: AppText.body(context, size: 15)),
-          trailing: Switch(
-            value: value,
-            onChanged: onChanged,
-            activeTrackColor: AppColors.accentEmerald,
+        Material(
+          color: Colors.transparent,
+          child: ListTile(
+            leading: Icon(icon, color: AppColors.accentEmerald),
+            title: Text(label, style: AppText.body(context, size: 15)),
+            trailing: Switch(
+              value: value,
+              onChanged: onChanged,
+              activeTrackColor: AppColors.accentEmerald,
+            ),
           ),
         ),
         Divider(height: 1, color: palette.border, indent: 16, endIndent: 16),
