@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build signed APK & AAB
     runs-on: ubuntu-latest
+    timeout-minutes: 30 # never let a hung step stall the build indefinitely
     permissions:
       contents: write # required to publish the signed build to a Release
 
@@ -67,24 +68,27 @@ jobs:
           ls -lh dist
 
       # Publish to a GitHub Release. Release assets have free, unlimited storage
-      # separate from the Actions artifact-storage quota, so this is the reliable
-      # way to deliver the signed APK + AAB as permanent download links.
-      - name: Publish signed build to a Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          TAG="build-${{ github.run_number }}"
-          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
-          gh release create "$TAG" \
-            dist/nextel-v1.0.0.apk \
-            dist/nextel-v1.0.0.aab \
-            --title "Nextel v1.0.0 — build ${{ github.run_number }}" \
-            --notes "Signed release APK and AAB for Nextel v1.0.0.
+      # separate from the Actions artifact-storage quota. We use a stable
+      # "latest" tag so there is always ONE reliable download link, and the
+      # softprops action uploads large assets reliably (with retries) rather
+      # than the raw gh CLI, which could hang on big files.
+      - name: Publish signed build to the latest Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Nextel v1.0.0 (latest build)
+          make_latest: true
+          files: |
+            dist/nextel-v1.0.0.apk
+            dist/nextel-v1.0.0.aab
+          body: |
+            Signed release APK and AAB for **Nextel v1.0.0**.
 
-          - **nextel-v1.0.0.apk** — install directly on any Android phone to test
-          - **nextel-v1.0.0.aab** — upload to Google Play Console to publish
+            - **nextel-v1.0.0.apk** — install directly on any Android phone to test
+            - **nextel-v1.0.0.aab** — upload to Google Play Console to publish
 
-          Commit: ${{ github.sha }}"
+            This release is updated on every push to `main`.
+            Build ${{ github.run_number }} · commit ${{ github.sha }}
 
       # Also upload as workflow artifacts when the account's artifact-storage
       # quota allows. Non-fatal so a full quota never fails the build.
