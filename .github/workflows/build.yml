@@ -9,6 +9,8 @@ jobs:
   build:
     name: Build signed APK & AAB
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # required to publish the signed build to a Release
 
     steps:
       - name: Checkout
@@ -57,16 +59,49 @@ jobs:
       - name: Build release App Bundle (AAB)
         run: flutter build appbundle --release
 
-      - name: Upload APK artifact
+      - name: Stage build outputs with clear names
+        run: |
+          mkdir -p dist
+          cp build/app/outputs/flutter-apk/app-release.apk dist/nextel-v1.0.0.apk
+          cp build/app/outputs/bundle/release/app-release.aab dist/nextel-v1.0.0.aab
+          ls -lh dist
+
+      # Publish to a GitHub Release. Release assets have free, unlimited storage
+      # separate from the Actions artifact-storage quota, so this is the reliable
+      # way to deliver the signed APK + AAB as permanent download links.
+      - name: Publish signed build to a Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="build-${{ github.run_number }}"
+          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+          gh release create "$TAG" \
+            dist/nextel-v1.0.0.apk \
+            dist/nextel-v1.0.0.aab \
+            --title "Nextel v1.0.0 — build ${{ github.run_number }}" \
+            --notes "Signed release APK and AAB for Nextel v1.0.0.
+
+          - **nextel-v1.0.0.apk** — install directly on any Android phone to test
+          - **nextel-v1.0.0.aab** — upload to Google Play Console to publish
+
+          Commit: ${{ github.sha }}"
+
+      # Also upload as workflow artifacts when the account's artifact-storage
+      # quota allows. Non-fatal so a full quota never fails the build.
+      - name: Upload APK artifact (best-effort)
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: nextel-release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
-          if-no-files-found: error
+          path: dist/nextel-v1.0.0.apk
+          retention-days: 5
+          if-no-files-found: warn
 
-      - name: Upload AAB artifact
+      - name: Upload AAB artifact (best-effort)
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: nextel-release-aab
-          path: build/app/outputs/bundle/release/app-release.aab
-          if-no-files-found: error
+          path: dist/nextel-v1.0.0.aab
+          retention-days: 5
+          if-no-files-found: warn
