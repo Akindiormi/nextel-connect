@@ -33,6 +33,9 @@ class Lesson {
   final List<String> actionSteps;
   final List<String> keyTakeaways;
   final List<QuizQuestion> quiz;
+  /// Minimum correct answers required to pass this lesson's quiz and
+  /// unlock the next lesson. Defaults to 70% of the quiz length, rounded up.
+  final int? passScore;
 
   const Lesson({
     required this.id,
@@ -45,9 +48,16 @@ class Lesson {
     this.actionSteps = const [],
     this.keyTakeaways = const [],
     this.quiz = const [],
+    this.passScore,
   });
 
   bool get hasQuiz => quiz.isNotEmpty;
+
+  /// Effective pass score: explicit [passScore] if set, otherwise 70% of
+  /// the quiz length (rounded up), so old lessons behave sensibly with no
+  /// data migration needed.
+  int get effectivePassScore =>
+      passScore ?? (quiz.isEmpty ? 0 : (quiz.length * 0.7).ceil());
 
   int get wordCount =>
       paragraphs.fold(0, (sum, p) => sum + p.split(RegExp(r'\s+')).length);

@@ -179,6 +179,21 @@ class ProgressService extends ChangeNotifier {
   bool hasUnlocked(String achievementId) => _achievements.contains(achievementId);
   int? quizScore(String lessonId) => _quizScores[lessonId];
 
+  /// A lesson is unlocked if it's the first in its course, or if the
+  /// previous lesson's quiz was passed (score >= effectivePassScore).
+  /// Lessons with no quiz just require the previous lesson to be marked
+  /// complete. This gates progression through a course's quiz chain.
+  bool isLessonUnlocked(Course course, Lesson lesson) {
+    final idx = course.lessons.indexWhere((l) => l.id == lesson.id);
+    if (idx <= 0) return true; // first lesson, or not found -> don't block
+    final prev = course.lessons[idx - 1];
+    if (prev.hasQuiz) {
+      final score = _quizScores[prev.id] ?? -1;
+      return score >= prev.effectivePassScore;
+    }
+    return _completedLessons.contains(prev.id);
+  }
+
   /// True if the quiz was already taken today (prevents same-day retake).
   bool quizTakenToday(String lessonId) =>
       _quizDates[lessonId] == _dayKey(DateTime.now());

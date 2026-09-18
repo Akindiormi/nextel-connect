@@ -195,14 +195,18 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                     const SizedBox(height: 16),
 
                     if (_tab == 0)
-                      ...c.lessons.map((l) => Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: _LessonTile(
-                              lesson: l,
-                              done: _progress.isLessonComplete(l.id),
-                              onTap: () => _openLesson(l),
-                            ),
-                          ))
+                      ...c.lessons.map((l) {
+                        final unlocked = _progress.isLessonUnlocked(c, l);
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 12),
+                          child: _LessonTile(
+                            lesson: l,
+                            done: _progress.isLessonComplete(l.id),
+                            locked: !unlocked,
+                            onTap: unlocked ? () => _openLesson(l) : () {},
+                          ),
+                        );
+                      })
                     else
                       _AboutSection(course: c, palette: palette),
                   ]),
@@ -309,22 +313,38 @@ class _AboutRow extends StatelessWidget {
 class _LessonTile extends StatelessWidget {
   final Lesson lesson;
   final bool done;
+  final bool locked;
   final VoidCallback onTap;
 
   const _LessonTile({
     required this.lesson,
     required this.done,
     required this.onTap,
+    this.locked = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final palette = AppPalette.of(context);
     return GlassCard(
-      onTap: onTap,
+      onTap: () {
+        if (locked) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(
+                  'Pass the previous lesson\'s quiz to unlock this one'),
+              duration: Duration(seconds: 2),
+            ),
+          );
+          return;
+        }
+        onTap();
+      },
       padding: const EdgeInsets.all(14),
       radius: 18,
-      child: Row(
+      child: Opacity(
+        opacity: locked ? 0.55 : 1,
+        child: Row(
         children: [
           Container(
             width: 40,
@@ -337,10 +357,13 @@ class _LessonTile extends StatelessWidget {
             ),
             child: done
                 ? const Icon(Icons.check_rounded, color: Colors.white, size: 20)
-                : Center(
-                    child: Text('${lesson.index}',
-                        style: AppText.number(context, size: 16)),
-                  ),
+                : locked
+                    ? Icon(Icons.lock_rounded,
+                        size: 18, color: palette.textSecondary)
+                    : Center(
+                        child: Text('${lesson.index}',
+                            style: AppText.number(context, size: 16)),
+                      ),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -361,20 +384,27 @@ class _LessonTile extends StatelessWidget {
                         style: AppText.label(context, size: 11)),
                     if (lesson.hasQuiz) ...[
                       const SizedBox(width: 10),
-                      const Icon(Icons.quiz_rounded,
-                          size: 13, color: AppColors.gold),
+                      Icon(Icons.quiz_rounded,
+                          size: 13,
+                          color: locked ? palette.textSecondary : AppColors.gold),
                       const SizedBox(width: 4),
-                      Text('Quiz',
+                      Text(
+                          locked
+                              ? '${lesson.quiz.length} questions'
+                              : 'Quiz \u00b7 ${lesson.effectivePassScore}/${lesson.quiz.length} to pass',
                           style: AppText.label(context,
-                              size: 11, color: AppColors.gold)),
+                              size: 11,
+                              color: locked ? palette.textSecondary : AppColors.gold)),
                     ],
                   ],
                 ),
               ],
             ),
           ),
-          Icon(Icons.chevron_right_rounded, color: palette.textSecondary),
+          Icon(locked ? Icons.lock_rounded : Icons.chevron_right_rounded,
+              color: palette.textSecondary),
         ],
+        ),
       ),
     );
   }
