@@ -13,6 +13,32 @@ const int kCourseCompleteXp = 100;
 const int kStreak7BonusXp = 50;
 const int kStreak30BonusXp = 200;
 const int kToolUseXp = 5;
+const int kQuestXp = 10;
+
+/// A single daily quest definition — a nudge toward one specific feature.
+class DailyQuest {
+  final String id;
+  final String title;
+  final IconData icon;
+  const DailyQuest(this.id, this.title, this.icon);
+}
+
+/// Rotating pool of daily quests. One is picked per day (by date), cycling
+/// through so testers get pointed at a different part of the app each day.
+const List<DailyQuest> kDailyQuests = [
+  DailyQuest('lesson', 'Complete a lesson today', Icons.menu_book_rounded),
+  DailyQuest('quiz', 'Pass a quiz today', Icons.quiz_rounded),
+  DailyQuest('tool_pricing', 'Try the Pricing Tool', Icons.sell_rounded),
+  DailyQuest('tool_profit', 'Try the Profit Margin tool', Icons.trending_up_rounded),
+  DailyQuest('tool_savings', 'Try the Savings Calculator', Icons.savings_rounded),
+  DailyQuest('tool_breakeven', 'Try the Break-Even Calculator', Icons.balance_rounded),
+  DailyQuest('tool_startup', 'Try the Startup Cost tool', Icons.receipt_long_rounded),
+  DailyQuest('tool_checklist', 'Check off a Business Checklist step', Icons.checklist_rounded),
+  DailyQuest('tool_customers', 'Add a customer record', Icons.contacts_rounded),
+  DailyQuest('tool_goals', 'Update your Goal Tracker', Icons.flag_rounded),
+  DailyQuest('achievements', 'Check your Achievements page', Icons.emoji_events_rounded),
+  DailyQuest('community', 'Visit the Community tab', Icons.groups_rounded),
+];
 
 /// A named level threshold.
 class AppLevel {
@@ -90,6 +116,7 @@ class ProgressService extends ChangeNotifier {
   List<XpEvent> _xpHistory = [];
   Map<String, int> _goals = {}; // goal title -> target
   Map<String, int> _goalProgress = {}; // goal title -> current
+  Set<String> _questDoneDates = {}; // "yyyy-mm-dd" entries where quest was completed
 
   // ---- getters ----
   int get xp => _xp;
@@ -103,6 +130,14 @@ class ProgressService extends ChangeNotifier {
   Map<String, int> get goals => _goals;
   Map<String, int> get goalProgress => _goalProgress;
   Map<String, String> get bookmarks => _bookmarks;
+
+  /// Today's rotating quest — picked deterministically from the calendar day
+  /// so every tester sees the same quest on a given day.
+  DailyQuest get todaysQuest =>
+      kDailyQuests[DateTime.now().difference(DateTime(2026, 1, 1)).inDays %
+          kDailyQuests.length];
+
+  bool get questDoneToday => _questDoneDates.contains(_dayKey(DateTime.now()));
 
   AppLevel get currentLevel {
     AppLevel result = kLevels.first;
@@ -203,6 +238,7 @@ class ProgressService extends ChangeNotifier {
     _bookmarks = _decodeStringMap(_prefs.getString('bookmarks'));
     _goals = _decodeIntMap(_prefs.getString('goals'));
     _goalProgress = _decodeIntMap(_prefs.getString('goalProgress'));
+    _questDoneDates = (_prefs.getStringList('questDoneDates') ?? []).toSet();
     final histRaw = _prefs.getString('xpHistory');
     if (histRaw != null) {
       _xpHistory = (jsonDecode(histRaw) as List)
@@ -368,6 +404,19 @@ class ProgressService extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Marks today's quest complete and awards XP (once per day).
+  Future<int> completeTodaysQuest() async {
+    final today = _dayKey(DateTime.now());
+    if (_questDoneDates.contains(today)) return 0;
+    _questDoneDates.add(today);
+    _xp += kQuestXp;
+    _logXp('Completed daily quest', kQuestXp);
+    _evaluateAchievements();
+    await _persist();
+    notifyListeners();
+    return kQuestXp;
+  }
+
   Future<void> removeGoal(String title) async {
     _goals.remove(title);
     _goalProgress.remove(title);
@@ -395,6 +444,7 @@ class ProgressService extends ChangeNotifier {
     _xpHistory.clear();
     _goals.clear();
     _goalProgress.clear();
+    _questDoneDates.clear();
     await _persist();
     notifyListeners();
   }
@@ -460,6 +510,7 @@ class ProgressService extends ChangeNotifier {
     await _prefs.setString('bookmarks', jsonEncode(_bookmarks));
     await _prefs.setString('goals', jsonEncode(_goals));
     await _prefs.setString('goalProgress', jsonEncode(_goalProgress));
+    await _prefs.setStringList('questDoneDates', _questDoneDates.toList());
     await _prefs.setString(
         'xpHistory', jsonEncode(_xpHistory.map((e) => e.toMap()).toList()));
   }
