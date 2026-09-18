@@ -3059,6 +3059,431 @@ final Course _course8 = Course(
 // COURSE REGISTRY
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// COURSE 9 — POS & Cash-Out Business (5 lessons)
+// ---------------------------------------------------------------------------
+
+final Course _course9 = Course(
+  id: 'c9',
+  title: 'POS & Cash-Out Business',
+  description:
+      'Start and run a profitable POS agent business alongside your airtime '
+      'and data operation. Covers capital, daily cash management, fraud '
+      'protection, and scaling to multiple machines.',
+  category: 'Agency Business',
+  difficulty: Difficulty.beginner,
+  icon: Icons.point_of_sale_rounded,
+  durationMinutes: 170,
+  order: 9,
+  lessons: [
+    _lesson('c9', 1, 'Understanding the POS Business Model', 5, [
+      'A POS (Point of Sale) cash-out business is simple in concept: you let '
+          'people withdraw cash from their bank account using your card '
+          'machine, and you charge a small fee for the convenience. For '
+          'millions of Nigerians without a nearby bank branch or a working '
+          'ATM, your stand is the fastest way to turn their bank balance into '
+          'cash in hand. That convenience is what you are actually selling.',
+      'The money moves like this: a customer taps or inserts their card, you '
+          'key in the amount they want, the machine debits their bank account '
+          'electronically, and you hand them physical cash from what you have '
+          'on hand. Your profit is the withdrawal fee — usually a percentage '
+          'of the amount, sometimes with a flat charge added for smaller '
+          'transactions. Your bank or POS provider credits the debited amount '
+          'back to your settlement account, usually within one to two '
+          'business days.',
+      'This is a cash-flow business before it is a profit business. You need '
+          'enough physical cash on hand to serve customers, and enough '
+          'patience to wait for the bank to settle what your machine already '
+          'debited. Agents who run out of cash mid-day turn away customers '
+          'and lose trust fast — understanding this cash cycle is the single '
+          'most important thing to get right before you open your stand.',
+      'Done well, a POS stand can out-earn airtime and data reselling on a '
+          'per-hour basis, especially in areas with heavy foot traffic and '
+          'few working ATMs. It also pairs naturally with an existing '
+          'telecom agency — customers who come to withdraw cash are the same '
+          'people who buy airtime and data, so the two businesses feed each '
+          'other.',
+    ], concepts: [
+      KeyConcept('Fee, Not Markup',
+          'You earn a withdrawal fee for convenience, not a margin on goods — the model is service-based.'),
+      KeyConcept('Settlement Lag',
+          'Cash leaves your hand immediately; the matching bank credit can take 1-2 business days to arrive.'),
+    ], steps: [
+      'Write out the fee structure you plan to charge per withdrawal band (e.g. ₦100-5,000, ₦5,100-20,000).',
+      'List two POS providers you could apply with and compare their settlement speed and commission split.',
+    ], takeaways: [
+      'A POS business sells convenience through a withdrawal fee, not a product markup.',
+      'Physical cash goes out immediately; the matching bank settlement can take days.',
+      'It pairs naturally with an existing airtime/data agency for shared foot traffic.',
+    ], quiz: [
+      _q('What does a POS cash-out agent actually sell?',
+          ['A physical product', 'Convenience, through a withdrawal fee', 'Bank loans', 'Airtime only'],
+          1,
+          'The agent is paid for convenience — giving people fast access to cash — not for selling a physical good.'),
+      _q('Where does the agent\'s profit come from?',
+          ['Interest from the bank', 'A withdrawal fee charged to the customer', 'Government subsidy', 'Currency exchange'],
+          1,
+          'The withdrawal fee, usually a percentage of the amount withdrawn, is the agent\'s income.'),
+      _q('How long can settlement to the agent\'s account typically take?',
+          ['Instantly, always', '1-2 business days', 'One month', 'It never settles'],
+          1,
+          'Settlement is not instant — agents typically wait 1-2 business days for the debited amount to reflect.'),
+      _q('Why is this described as a "cash-flow business before a profit business"?',
+          ['Because it has no profit', 'Because you need enough physical cash on hand to keep serving customers', 'Because banks pay agents in advance', 'Because fees are paid annually'],
+          1,
+          'Running out of physical cash mid-day stops you from serving customers even though you are still "profitable" on paper.'),
+      _q('What happens if an agent runs out of cash mid-day?',
+          ['Nothing, customers wait', 'They turn away customers and lose trust', 'The bank sends emergency cash', 'Fees automatically increase'],
+          1,
+          'Customers go elsewhere, and repeat trust is hard to rebuild once a stand gets a reputation for running dry.'),
+      _q('Why does a POS business pair well with an existing airtime/data agency?',
+          ['They use the same machine', 'They share the same customer foot traffic', 'They are legally required to be combined', 'POS machines print airtime'],
+          1,
+          'People who stop to withdraw cash are also likely to buy airtime or data at the same stand — the two feed each other.'),
+      _q('What is "settlement lag"?',
+          ['The fee charged to customers', 'The gap between cash leaving your hand and the bank credit arriving', 'A type of POS machine', 'A tax on withdrawals'],
+          1,
+          'It describes the delay between when you hand out cash and when the matching bank settlement reaches you.'),
+      _q('Which group of customers relies most on POS agents?',
+          ['People with no bank account at all', 'People without a nearby branch or working ATM', 'Only business owners', 'Only salary earners'],
+          1,
+          'The core customer base is people who lack convenient access to a branch or a functioning ATM nearby.'),
+      _q('What is typically true of fee structures for POS withdrawals?',
+          ['A single flat fee regardless of amount', 'Usually a percentage, sometimes with a flat charge on small amounts', 'Fees are illegal to charge', 'Customers set their own fee'],
+          1,
+          'Most agents use a percentage-based fee, often with a minimum flat charge for very small withdrawals.'),
+      _q('What is the main risk of poor cash-flow planning in this business?',
+          ['Losing your POS license', 'Being unable to serve customers even while technically profitable', 'Paying more taxes', 'Losing your phone number'],
+          1,
+          'You can have plenty of paper profit and still fail customers in the moment if you don\'t have physical cash on hand.'),
+    ]),
+    _lesson('c9', 2, 'Getting Started: Capital, Machine, and Registration', 6, [
+      'Before you touch a POS machine, you need three things lined up: '
+          'starting capital, a provider relationship, and basic paperwork. '
+          'Skipping any one of these leads to a shaky launch — undercapitalized '
+          'agents run dry by midday, agents without a proper provider deal '
+          'lose money to poor commission splits, and unregistered agents can '
+          'run into compliance trouble as they grow.',
+      'Your starting capital covers two separate things: the POS machine '
+          'itself (either bought outright or provided free by some banks in '
+          'exchange for transaction volume commitments) and your cash float — '
+          'the physical naira you keep on hand to pay out withdrawals. A '
+          'realistic starting float for a new stand in a moderately busy '
+          'location is often in the ₦100,000-₦300,000 range; too little and '
+          'you run out within hours on a good day.',
+      'Choosing a provider matters more than most new agents realize. '
+          'Providers differ in settlement speed, commission share, machine '
+          'reliability, and customer support responsiveness when a '
+          'transaction fails. A slightly lower commission with fast, '
+          'reliable settlement beats a slightly higher commission from a '
+          'provider whose machine goes down every other week.',
+      'On the paperwork side, most providers require a valid ID, proof of '
+          'address, and a BVN-linked bank account to onboard you as an agent. '
+          'Some require a small registration or caution fee. Keep copies of '
+          'everything you submit — disputes over reversed transactions are '
+          'far easier to resolve when your agent status and history are '
+          'clearly documented.',
+    ], concepts: [
+      KeyConcept('Two Kinds of Capital',
+          'You need money for the machine itself and separate money for daily cash float — budget both.'),
+      KeyConcept('Provider Quality Over Commission Rate',
+          'Fast, reliable settlement is worth more long-term than a marginally higher commission percentage.'),
+    ], steps: [
+      'Compare at least two POS providers on commission split, settlement speed, and machine cost.',
+      'Calculate your realistic starting float based on expected daily withdrawal volume in your area.',
+      'Gather your ID, proof of address, and BVN-linked account details before applying.',
+    ], takeaways: [
+      'Capital splits into machine cost and daily cash float — plan for both separately.',
+      'Provider reliability and settlement speed matter more long-term than a slightly better commission rate.',
+      'Proper documentation protects you when disputes or reversed transactions happen.',
+    ], quiz: [
+      _q('What are the two separate things your starting capital needs to cover?',
+          ['Rent and electricity', 'The POS machine and your daily cash float', 'Advertising and staff', 'Taxes and licensing only'],
+          1,
+          'You need money for the machine itself (or a deposit) and separate money to actually pay out withdrawals from.'),
+      _q('What is a realistic starting float range mentioned for a moderately busy stand?',
+          ['₦5,000-₦10,000', '₦100,000-₦300,000', '₦5 million+', 'No float is needed'],
+          1,
+          'That range gives enough cushion to serve a normal day\'s withdrawals without running dry quickly.'),
+      _q('Why does provider choice matter beyond the commission percentage?',
+          ['It doesn\'t matter at all', 'Settlement speed, reliability, and support responsiveness affect your business directly', 'All providers are identical', 'Only the machine color differs'],
+          1,
+          'A slightly lower commission from a fast, reliable provider often beats a higher commission from an unreliable one.'),
+      _q('What documents do most providers require to onboard an agent?',
+          ['Only a phone number', 'Valid ID, proof of address, and a BVN-linked account', 'A university degree', 'Nothing at all'],
+          1,
+          'Standard onboarding requires identity verification and a linked bank account tied to your BVN.'),
+      _q('Why should you keep copies of everything submitted during registration?',
+          ['It is not necessary', 'It makes resolving disputes over reversed transactions much easier', 'Providers require it be destroyed', 'For decoration'],
+          1,
+          'Clear documentation of your agent status and history speeds up dispute resolution significantly.'),
+      _q('What happens to undercapitalized agents on a busy day?',
+          ['Nothing changes', 'They run out of cash and have to turn customers away', 'They get bonus cash from the bank', 'Their fees automatically double'],
+          1,
+          'Without enough float, a busy day exposes cash shortages quickly, costing you customers.'),
+      _q('How do some banks provide POS machines to agents?',
+          ['Always at full retail price only', 'Sometimes free, in exchange for transaction volume commitments', 'Only by lottery', 'They never provide machines'],
+          1,
+          'Some banks waive machine costs if the agent commits to processing a minimum transaction volume.'),
+      _q('What is one consequence of a poor commission split with your provider?',
+          ['Better customer service', 'Reduced overall profit per transaction despite doing the same work', 'Free machine upgrades', 'Automatic tax exemption'],
+          1,
+          'A worse commission split eats into your margin on every single transaction you process.'),
+      _q('What role does a BVN-linked account play in onboarding?',
+          ['It is optional and rarely used', 'It verifies your identity and is required by most providers', 'It sets your withdrawal fee', 'It replaces the need for an ID'],
+          1,
+          'Providers use your BVN-linked account as part of verifying who you are before activating your agent status.'),
+      _q('What is the risk of skipping proper registration as you grow?',
+          ['No risk at all', 'Potential compliance trouble as your transaction volume increases', 'Lower fees automatically', 'Free machine replacements'],
+          1,
+          'Unregistered or improperly documented agents can run into compliance issues once volumes and scrutiny increase.'),
+    ]),
+    _lesson('c9', 3, 'Daily Operations: Managing Your Cash Float', 6, [
+      'Once you are live, your daily job comes down to one core skill: '
+          'managing your float so you never run out of cash and never sit on '
+          'too much unused cash either. Every morning, count what you have on '
+          'hand, note it down, and set a rough plan for when you will need to '
+          'top up based on expected traffic.',
+      'A simple rule many successful agents follow: keep enough float to '
+          'cover your busiest two to three hours without a top-up. If '
+          'mornings are your peak (salary days, market days), have your '
+          'largest float ready before you open, not after the queue has '
+          'already formed. Running to the bank mid-queue costs you customers '
+          'who won\'t wait.',
+      'Track every transaction, even the small ones. A simple notebook or a '
+          'notes app entry — amount, fee charged, running balance — protects '
+          'you if a dispute comes up later and helps you spot patterns, like '
+          'which hours or days are consistently busiest, so you can plan '
+          'float accordingly instead of guessing.',
+      'At the end of each day, reconcile: does your physical cash on hand, '
+          'plus what you expect to be settled from the bank, match what you '
+          'recorded in transactions? Small discrepancies happen, but a '
+          'growing gap over several days is a sign something needs '
+          'attention — either a recording mistake or a real problem worth '
+          'catching early.',
+    ], concepts: [
+      KeyConcept('Float Buffer Rule',
+          'Keep enough cash to cover your busiest 2-3 hours without needing a mid-day top-up.'),
+      KeyConcept('Daily Reconciliation',
+          'Compare recorded transactions against actual cash + expected settlement every single day.'),
+    ], steps: [
+      'Start a simple daily log: opening float, each transaction, closing float.',
+      'Identify your busiest hours this week and set your float top-up schedule around them.',
+      'Reconcile your numbers at the end of each day before closing your stand.',
+    ], takeaways: [
+      'Manage float around your busiest hours, not an average across the whole day.',
+      'Track every transaction, however small, to protect yourself and spot patterns.',
+      'Daily reconciliation catches problems early, before they become bigger losses.',
+    ], quiz: [
+      _q('What is the core daily skill of running a POS stand?',
+          ['Marketing', 'Managing your cash float so you never run dry or sit on excess idle cash', 'Accounting software use', 'Machine repair'],
+          1,
+          'Float management — having the right amount of cash at the right time — is the central daily operational skill.'),
+      _q('What is the suggested float buffer rule?',
+          ['Keep exactly ₦10,000 always', 'Keep enough to cover your busiest 2-3 hours without a top-up', 'Keep as little cash as possible', 'Float size does not matter'],
+          1,
+          'Having enough float to survive your peak hours without running to the bank mid-queue keeps customers from walking away.'),
+      _q('Why is running to the bank mid-queue a problem?',
+          ['It is illegal', 'It costs you customers who won\'t wait around', 'Banks charge extra for this', 'It improves customer trust'],
+          1,
+          'Customers with other options will simply leave rather than wait for you to restock cash.'),
+      _q('What should be tracked for every transaction, even small ones?',
+          ['Nothing, small ones don\'t matter', 'Amount, fee charged, and running balance', 'Only the customer\'s name', 'Only failed transactions'],
+          1,
+          'A simple log of amount, fee, and balance protects you in disputes and reveals useful patterns over time.'),
+      _q('What does daily reconciliation involve?',
+          ['Comparing recorded transactions against actual cash and expected settlement', 'Counting how many customers smiled', 'Calling your provider every day', 'Nothing, it is optional'],
+          1,
+          'Reconciliation checks that what you recorded matches what you physically have plus what is expected to settle.'),
+      _q('What does a small daily discrepancy usually mean?',
+          ['Immediate business failure', 'It can be normal, but a growing gap over days needs attention', 'Fraud has definitely occurred', 'The bank owes you money instantly'],
+          1,
+          'Occasional small gaps happen, but a persistent or growing pattern signals something worth investigating.'),
+      _q('When should your largest float be ready, on a day with a morning peak?',
+          ['After the queue has already formed', 'Before you open, ahead of the expected peak', 'It doesn\'t matter when', 'Only in the afternoon'],
+          1,
+          'Being prepared before the rush starts avoids the exact mid-queue cash-out problem this lesson warns about.'),
+      _q('What tool is suggested for tracking daily transactions?',
+          ['Expensive accounting software only', 'A simple notebook or notes app', 'Memory alone', 'Nothing is needed'],
+          1,
+          'Even a basic notebook or phone notes app is enough to track transactions consistently.'),
+      _q('What is one benefit of spotting your busiest hours over time?',
+          ['No real benefit', 'You can plan float top-ups around real patterns instead of guessing', 'It reduces your fees automatically', 'It changes your provider\'s commission'],
+          1,
+          'Knowing your actual peak periods lets you prepare float proactively instead of reacting after running short.'),
+      _q('What is the risk of sitting on too much unused cash float?',
+          ['No risk, more is always better', 'Idle cash is capital that could be working elsewhere, and carries theft/security risk', 'It increases your commission', 'It is required by law'],
+          1,
+          'Excess idle cash ties up capital and increases security risk without adding benefit beyond your actual buffer needs.'),
+    ]),
+    _lesson('c9', 4, 'Handling Risk: Fraud, Downtime, and Reversals', 6, [
+      'POS agents face risks that airtime resellers rarely see: network '
+          'downtime that strands customers mid-transaction, fraudulent cards '
+          'or stolen card details, and reversed transactions that can leave '
+          'you out of pocket if you are not careful. Knowing these risks '
+          'before they happen is what separates agents who survive their '
+          'first year from those who get burned early and quit.',
+      'Network downtime is the most common headache. When your provider\'s '
+          'system is slow or down, transactions can appear to fail on your '
+          'end while still debiting the customer\'s account, or vice versa. '
+          'Never hand out cash before confirming a transaction has fully gone '
+          'through — a confirmation SMS, an approval code, or a clear '
+          '"successful" screen on your machine. If a transaction looks '
+          'unclear, ask the customer to wait a moment rather than risk paying '
+          'out on an uncompleted debit.',
+      'Fraud typically shows up as customers attempting withdrawals with '
+          'cards that are not theirs, or numbers keyed in ways designed to '
+          'exploit weak verification. Always require PIN entry directly by '
+          'the customer, never key it in for them, and watch for signs of '
+          'nervousness or someone reciting a PIN from a note rather than '
+          'from memory. These are common indicators something is off.',
+      'Reversals happen when a bank determines a transaction was disputed, '
+          'fraudulent, or technically failed after you already paid out cash. '
+          'This is the scenario that hurts most — you handed out real naira, '
+          'and now the corresponding credit is being clawed back. The best '
+          'protection is discipline: confirm every transaction clearly before '
+          'paying, keep your transaction log, and know your provider\'s '
+          'dispute process so you can push back on wrongful reversals.',
+    ], concepts: [
+      KeyConcept('Confirm Before You Pay',
+          'Never hand out cash until you have clear confirmation the transaction succeeded — a screen, code, or SMS.'),
+      KeyConcept('PIN Discipline',
+          'Customers must enter their own PIN; you keying it in for them removes a critical fraud check.'),
+    ], steps: [
+      'Write your own personal rule for what counts as "confirmed" before you release cash.',
+      'Learn your specific provider\'s dispute and reversal process in advance, not after it happens.',
+      'Practice spotting nervous or scripted PIN entry as a fraud warning sign.',
+    ], takeaways: [
+      'Never release cash without clear confirmation the transaction succeeded.',
+      'Customers must always enter their own PIN — this is a core fraud safeguard.',
+      'Know your provider\'s dispute process before you need it, not during a crisis.',
+    ], quiz: [
+      _q('What should you always do before handing out cash?',
+          ['Trust the customer\'s word', 'Confirm the transaction has clearly succeeded', 'Charge double the fee for safety', 'Call the police first'],
+          1,
+          'Clear confirmation — a screen, code, or SMS — protects you from paying out on a transaction that hasn\'t actually gone through.'),
+      _q('What can happen during network downtime?',
+          ['Nothing changes', 'A transaction can appear failed while still debiting the customer', 'Fees automatically waive', 'Machines shut off permanently'],
+          1,
+          'Downtime can create confusing situations where the debit happens but confirmation is unclear or delayed.'),
+      _q('Who should enter the customer\'s PIN?',
+          ['The agent, for speed', 'The customer themselves, always', 'Either person', 'PINs are not required'],
+          1,
+          'Customers entering their own PIN is a core fraud safeguard — an agent entering it removes that protection.'),
+      _q('What is a warning sign of potential card fraud?',
+          ['A confident, memorized PIN entry', 'Someone reciting a PIN from a written note or appearing nervous', 'A customer withdrawing a small amount', 'A customer using their own card'],
+          1,
+          'Reciting a PIN from a note or visible nervousness are common red flags worth paying attention to.'),
+      _q('What is a "reversal" in this context?',
+          ['A bonus payment from the bank', 'A bank clawing back a credit after determining the transaction was disputed or failed', 'A type of discount', 'A customer complaint with no financial effect'],
+          1,
+          'A reversal removes the credit you expected after you may have already paid out cash — the costliest risk in this lesson.'),
+      _q('Why does a reversal hurt more than other risks discussed?',
+          ['It doesn\'t hurt at all', 'You may have already paid out real cash before the credit is clawed back', 'It only affects the bank', 'It automatically doubles your fee'],
+          1,
+          'The pain comes from having already released physical cash before losing the matching credit.'),
+      _q('What should you do if a transaction status looks unclear?',
+          ['Pay out immediately to avoid delay', 'Ask the customer to wait a moment until it is confirmed', 'Cancel the customer\'s card', 'Ignore it and move to the next customer'],
+          1,
+          'Waiting for clarity is far safer than risking a payout on an unconfirmed or failed transaction.'),
+      _q('Why should you know your provider\'s dispute process in advance?',
+          ['It is not important', 'So you can push back on wrongful reversals when they happen', 'To get a discount on fees', 'It is required for machine setup'],
+          1,
+          'Understanding the dispute process before a crisis means you can act quickly and correctly when a reversal occurs.'),
+      _q('What is one form fraud commonly takes at POS stands?',
+          ['Customers withdrawing exact change', 'Customers attempting withdrawals with cards that are not theirs', 'Customers asking for receipts', 'Customers using the machine slowly'],
+          1,
+          'Unauthorized card use is one of the most common fraud patterns agents need to watch for.'),
+      _q('What is the best overall protection against POS-related risk?',
+          ['Charging very high fees', 'Discipline: confirming transactions, keeping logs, knowing your dispute process', 'Avoiding all customers', 'Refusing all card withdrawals'],
+          1,
+          'Consistent discipline around confirmation, logging, and knowing your recourse is the strongest overall defense.'),
+    ]),
+    _lesson('c9', 5, 'Growing: Multiple Machines and Locations', 5, [
+      'Once your first stand is stable — consistent daily volume, a float '
+          'routine that works, and no recurring fraud or reversal problems — '
+          'growth usually means one of two paths: adding a second machine at '
+          'the same location to handle peak-hour queues, or opening a second '
+          'location entirely. Each has different capital and management '
+          'demands, and picking the right one depends on what is actually '
+          'limiting your current stand.',
+      'If your bottleneck is queue length during predictable peak hours '
+          '(salary days, weekends), a second machine at the same spot is the '
+          'simpler move — same rent, same staff presence, same customer '
+          'trust already built, just more throughput capacity. If your '
+          'bottleneck is that your current location has hit its natural '
+          'ceiling of daily footfall, a second location in an underserved '
+          'area is the better growth path, even though it means training or '
+          'hiring someone you trust to run it.',
+      'Whichever path you take, the same float and reconciliation discipline '
+          'from earlier lessons must scale with you — two machines with no '
+          'system means two chances for cash to go missing or transactions to '
+          'go untracked. Before adding capacity, make sure your recordkeeping '
+          'system can handle it, whether that is a shared notebook system or '
+          'a simple daily reporting habit between you and any staff.',
+      'Growth should be funded by profits you have already proven the '
+          'business generates, not by stretching your float so thin that your '
+          'original stand starts running dry to support expansion. A second '
+          'machine or location that starves your first one of cash is not '
+          'growth — it is just moving the same risk around.',
+    ], concepts: [
+      KeyConcept('Two Growth Paths',
+          'Add a second machine at the same spot for queue relief, or open a new location for reach — the bottleneck tells you which.'),
+      KeyConcept('Systems Before Scale',
+          'Your float and reconciliation discipline must scale with you, or growth just multiplies your risk.'),
+    ], steps: [
+      'Identify honestly whether your bottleneck is queue length or location ceiling.',
+      'Estimate the float and staffing needs for your preferred growth path before committing capital.',
+      'Set a rule: only expand using proven profit, never by starving your existing stand\'s float.',
+    ], takeaways: [
+      'A second machine solves queue congestion; a second location solves a footfall ceiling.',
+      'Your tracking and float discipline must scale alongside any growth.',
+      'Fund growth from proven profit, not by weakening your existing operation.',
+    ], quiz: [
+      _q('What are the two main growth paths described?',
+          ['Selling the business, or quitting', 'A second machine at the same spot, or a second location entirely', 'Only franchising', 'Switching to airtime only'],
+          1,
+          'Growth typically means either adding capacity where you are, or expanding reach to a new spot.'),
+      _q('When does a second machine at the same location make sense?',
+          ['Never', 'When your bottleneck is queue length during predictable peak hours', 'Only if you have no customers', 'When you want to reduce fees'],
+          1,
+          'If the same location is simply overwhelmed at peak times, adding capacity there is the simpler fix.'),
+      _q('When does a second location make more sense than a second machine?',
+          ['When your current location has hit its natural daily footfall ceiling', 'When you dislike your current spot', 'Randomly, it doesn\'t matter', 'Only if a competitor opens nearby'],
+          1,
+          'If footfall itself is capped, adding another machine in the same spot won\'t help — you need new reach.'),
+      _q('What must scale alongside any growth, according to this lesson?',
+          ['Nothing needs to change', 'Your float and reconciliation discipline', 'Only your marketing', 'Your fees must double'],
+          1,
+          'Without systems scaling too, more machines or locations just multiply the chances of losing track of cash.'),
+      _q('What is the risk of two machines with no tracking system?',
+          ['No risk, more machines is always better', 'More chances for cash to go missing or transactions to go untracked', 'Lower fees automatically', 'Faster settlement times'],
+          1,
+          'Scaling without systems multiplies the exact risks the earlier lessons warned about.'),
+      _q('How should growth ideally be funded?',
+          ['By taking a large loan regardless of current performance', 'From profits the business has already proven it generates', 'By reducing your existing stand\'s float', 'It does not matter how it is funded'],
+          1,
+          'Funding expansion from proven profit avoids overextending and weakening your existing operation.'),
+      _q('What happens if you starve your original stand\'s float to fund a new one?',
+          ['This is smart, efficient growth', 'It is not real growth — it just moves the same risk to a different spot', 'It guarantees success at the new location', 'It has no effect either way'],
+          1,
+          'Weakening a working stand to fund a new one just relocates your risk instead of adding real capacity.'),
+      _q('What does opening a second location usually require, that a second machine at the same spot does not?',
+          ['Nothing extra', 'Training or hiring someone you trust to run it', 'A different type of POS machine', 'Government approval only'],
+          1,
+          'A separate location needs someone present to run it, unlike simply adding a machine where you already work.'),
+      _q('What should you honestly assess before choosing a growth path?',
+          ['Your favorite color', 'Whether your real bottleneck is queue length or a footfall ceiling', 'How many friends have POS businesses', 'Nothing, just pick randomly'],
+          1,
+          'Correctly diagnosing your actual bottleneck determines which growth path will actually solve the problem.'),
+      _q('What is the underlying theme connecting growth to the earlier lessons in this course?',
+          ['Growth is unrelated to earlier lessons', 'The same float, fraud, and reconciliation discipline must carry forward as you scale', 'Growth eliminates the need for float management', 'Fraud risk disappears with more machines'],
+          1,
+          'Everything taught about float, confirmation, and reconciliation still applies — just at a larger scale.'),
+    ]),
+  ],
+);
+
 final List<Course> kCourses = [
   _course1,
   _course2,
@@ -3068,6 +3493,7 @@ final List<Course> kCourses = [
   _course6,
   _course7,
   _course8,
+  _course9,
 ];
 
 Course courseById(String id) => kCourses.firstWhere((c) => c.id == id);
