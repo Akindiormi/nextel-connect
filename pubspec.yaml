@@ -1,7 +1,7 @@
 name: nextel_connect
 description: "Nextel - Your World. Your Network. Educational telecom business app."
 publish_to: 'none'
-version: 1.0.1+2
+version: 1.1.0+3
 
 environment:
   sdk: ^3.12.2
