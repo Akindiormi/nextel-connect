@@ -45,6 +45,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.dispose();
   }
 
+  String _nextBadgeHint() {
+    final next = kAchievements.firstWhere(
+      (a) => !_progress.hasUnlocked(a.id),
+      orElse: () => kAchievements.last,
+    );
+    if (_progress.hasUnlocked(next.id)) return 'All badges unlocked so far!';
+    return 'Keep it up to unlock the ${next.title} badge';
+  }
+
   Future<void> _logout() async {
     final confirmed = await showDialog<bool>(
       context: context,
@@ -144,36 +153,72 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: GlassCard(
             child: Column(
               children: [
-                Container(
-                  width: 88,
-                  height: 88,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      user?.avatarColor ?? AppColors.accentEmerald,
-                      (user?.avatarColor ?? AppColors.accentEmerald)
-                          .withValues(alpha: 0.7),
-                    ]),
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: (user?.avatarColor ?? AppColors.accentEmerald)
-                            .withValues(alpha: 0.4),
-                        blurRadius: 20,
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      width: 88,
+                      height: 88,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                          user?.avatarColor ?? AppColors.accentEmerald,
+                          (user?.avatarColor ?? AppColors.accentEmerald)
+                              .withValues(alpha: 0.7),
+                        ]),
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                (user?.avatarColor ?? AppColors.accentEmerald)
+                                    .withValues(alpha: 0.4),
+                            blurRadius: 20,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(user?.initial ?? 'N',
-                        style: AppText.display(context,
-                            size: 40, color: Colors.white)),
-                  ),
+                      child: Center(
+                        child: Text(user?.initial ?? 'N',
+                            style: AppText.display(context,
+                                size: 40, color: Colors.white)),
+                      ),
+                    ),
+                    Positioned(
+                      right: -2,
+                      bottom: -2,
+                      child: GestureDetector(
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (_) => const EditProfileScreen()),
+                        ),
+                        child: Container(
+                          width: 28,
+                          height: 28,
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryDark,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: AppPalette.of(context).isDark
+                                  ? AppColors.darkBackground
+                                  : Colors.white,
+                              width: 2,
+                            ),
+                          ),
+                          child: const Icon(Icons.edit_rounded,
+                              color: Colors.white, size: 14),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 14),
                 Text(user?.name ?? 'Learner',
                     style: AppText.display(context, size: 22)),
-                if ((user?.username ?? '').isNotEmpty)
-                  Text('@${user!.username}',
-                      style: AppText.body(context, size: 14)),
+                const SizedBox(height: 4),
+                Text(
+                  (user?.username ?? '').isNotEmpty
+                      ? '${user!.experience} Learner • @${user.username}'
+                      : '${user?.experience ?? 'Beginner'} Learner',
+                  style: AppText.body(context, size: 13),
+                ),
                 const SizedBox(height: 10),
                 GlassPill(
                   color: AppColors.gold.withValues(alpha: 0.15),
@@ -195,41 +240,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           const SizedBox(height: 16),
 
-          // stat pills — balanced vertical tiles that count up
+          // stat band — one unified card, three columns divided by hairlines
           FadeSlideIn(
             delay: const Duration(milliseconds: 100),
-            child: Row(
-            children: [
-              Expanded(
-                child: _ProfileStat(
-                  icon: Icons.bolt_rounded,
-                  color: AppColors.gold,
-                  value: _progress.xp,
-                  label: 'Total XP',
-                ),
+            child: GlassCard(
+              padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 4),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: _StatColumn(
+                      icon: Icons.bolt_rounded,
+                      color: AppColors.gold,
+                      value: _progress.xp,
+                      label: 'Total XP',
+                    ),
+                  ),
+                  _StatDivider(),
+                  Expanded(
+                    child: _StatColumn(
+                      icon: Icons.local_fire_department_rounded,
+                      color: const Color(0xFFEF4444),
+                      value: _progress.streak,
+                      label: 'Streak',
+                    ),
+                  ),
+                  _StatDivider(),
+                  Expanded(
+                    child: _StatColumn(
+                      icon: Icons.workspace_premium_rounded,
+                      color: AppColors.accentEmerald,
+                      value: coursesDone,
+                      label: 'Courses',
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _ProfileStat(
-                  icon: Icons.local_fire_department_rounded,
-                  color: const Color(0xFFEF4444),
-                  value: _progress.streak,
-                  label: 'Streak',
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _ProfileStat(
-                  icon: Icons.workspace_premium_rounded,
-                  color: AppColors.accentEmerald,
-                  value: coursesDone,
-                  label: 'Courses',
-                ),
-              ),
-            ],
+            ),
           ),
-          ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 16),
+
+          // streak highlight banner
+          if (_progress.streak > 0) ...[
+            FadeSlideIn(
+              delay: const Duration(milliseconds: 130),
+              child: GlassCard(
+                color: AppColors.primaryDark,
+                child: Row(
+                  children: [
+                    Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: const Icon(Icons.local_fire_department_rounded,
+                          color: AppColors.gold, size: 24),
+                    ),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('${_progress.streak}-day learning streak',
+                              style: AppText.heading(context,
+                                  size: 15, color: Colors.white)),
+                          const SizedBox(height: 2),
+                          Text(_nextBadgeHint(),
+                              style: AppText.body(context,
+                                  size: 12, color: Colors.white70)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+          ],
 
           // XP progress card
           FadeSlideIn(
@@ -534,14 +622,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-/// A balanced vertical stat tile: centered icon badge, count-up number, label.
-class _ProfileStat extends StatelessWidget {
+/// One column within the unified stats band: icon badge, count-up number,
+/// label — no card wrapper of its own, since the band provides that.
+class _StatColumn extends StatelessWidget {
   final IconData icon;
   final Color color;
   final int value;
   final String label;
 
-  const _ProfileStat({
+  const _StatColumn({
     required this.icon,
     required this.color,
     required this.value,
@@ -550,33 +639,41 @@ class _ProfileStat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlassCard(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-      radius: 20,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.15),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(icon, color: color, size: 22),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 36,
+          height: 36,
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.15),
+            borderRadius: BorderRadius.circular(11),
           ),
-          const SizedBox(height: 10),
-          XpCounter(value: value, size: 20),
-          const SizedBox(height: 2),
-          Text(
-            label,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
-            style: AppText.label(context, size: 11),
-          ),
-        ],
-      ),
+          child: Icon(icon, color: color, size: 19),
+        ),
+        const SizedBox(height: 8),
+        XpCounter(value: value, size: 18),
+        const SizedBox(height: 2),
+        Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: AppText.label(context, size: 11),
+        ),
+      ],
+    );
+  }
+}
+
+/// A thin vertical hairline separating columns in the stats band.
+class _StatDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 1,
+      height: 44,
+      color: AppPalette.of(context).border,
     );
   }
 }
@@ -601,13 +698,22 @@ class _LinkTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = AppPalette.of(context);
+    final tileColor = color ?? AppColors.accentEmerald;
     return Column(
       children: [
         Material(
           color: Colors.transparent,
           child: ListTile(
             onTap: onTap,
-            leading: Icon(icon, color: color ?? AppColors.accentEmerald),
+            leading: Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: tileColor.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(11),
+              ),
+              child: Icon(icon, color: tileColor, size: 19),
+            ),
             title: Text(label,
                 style: AppText.body(context,
                     size: 15, color: color ?? palette.textPrimary)),
@@ -651,7 +757,15 @@ class _SwitchTile extends StatelessWidget {
         Material(
           color: Colors.transparent,
           child: ListTile(
-            leading: Icon(icon, color: AppColors.accentEmerald),
+            leading: Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: AppColors.accentEmerald.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(11),
+              ),
+              child: Icon(icon, color: AppColors.accentEmerald, size: 19),
+            ),
             title: Text(label, style: AppText.body(context, size: 15)),
             trailing: Switch(
               value: value,
