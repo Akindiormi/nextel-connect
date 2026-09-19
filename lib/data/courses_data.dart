@@ -3484,6 +3484,417 @@ final Course _course9 = Course(
   ],
 );
 
+// ---------------------------------------------------------------------------
+// COURSE 10 — Choosing the Right Location for Your Stand (5 lessons)
+// ---------------------------------------------------------------------------
+
+final Course _course10 = Course(
+  id: 'c10',
+  title: 'Choosing the Right Location for Your Stand',
+  description:
+      'Location decides more of your daily revenue than almost anything '
+      'else you control. Learn how to read foot traffic, size up '
+      'competition, and negotiate a spot that actually works for your '
+      'business.',
+  category: 'Agency Business',
+  difficulty: Difficulty.beginner,
+  icon: Icons.location_on_rounded,
+  durationMinutes: 150,
+  order: 10,
+  lessons: [
+    _lesson('c10', 1, 'Why Location Determines Success', 5, [
+      'Two agents can sell the exact same airtime, data, and POS services, '
+          'use identical pricing, and still earn wildly different incomes — '
+          'purely because of where they set up. Location controls how many '
+          'potential customers walk past you every day, and no amount of '
+          'good service can fully make up for a spot nobody passes through.',
+      'A strong location does three things at once: it puts you in front of '
+          'people who already have a reason to be nearby (a market, a bus '
+          'stop, an office cluster), it makes you easy to find and return to, '
+          'and it signals trust — an established-looking stand in a busy, '
+          'visible spot feels safer to transact with than one tucked away '
+          'somewhere quiet.',
+      'This does not mean the busiest, most expensive spot always wins. A '
+          'high-traffic location with rent you cannot sustain, or with heavy '
+          'competition already established, can perform worse than a quieter '
+          'but well-positioned spot with lower overhead. The goal is not '
+          'maximum traffic — it is the best traffic-to-cost ratio for your '
+          'specific services.',
+      'Before you commit to any spot, you need a clear way to evaluate it '
+          'objectively rather than picking based on gut feeling or what '
+          'happens to be available. The rest of this course gives you that '
+          'framework: reading foot traffic properly, sizing up competition, '
+          'negotiating fairly, and knowing when to adjust if your first '
+          'choice underperforms.',
+    ], concepts: [
+      KeyConcept('Traffic-to-Cost Ratio',
+          'The best location isn\'t the busiest one — it\'s the one with the best balance of footfall against what you pay for it.'),
+    ], steps: [
+      'List 3 potential locations you are considering and write down what draws people there.',
+      'Note the approximate rent or space cost for each one.',
+    ], takeaways: [
+      'Location controls how many potential customers see you daily — service alone can\'t fully offset a bad spot.',
+      'A strong location combines existing foot traffic, visibility, and a sense of trust.',
+      'The goal is the best traffic-to-cost ratio, not simply the busiest or cheapest option.',
+    ], quiz: [
+      _q('Why can two agents selling identical services earn very different incomes?',
+          ['Random luck only', 'Location differences in foot traffic and visibility', 'One agent works harder always', 'Prices are never the same'],
+          1,
+          'Location controls how many potential customers even see the stand each day, which drives a huge income gap.'),
+      _q('What are the three things a strong location does at once?',
+          ['Lowers taxes, increases fees, reduces rent', 'Puts you near existing foot traffic, makes you easy to find, and signals trust', 'Guarantees no competition, free rent, and instant profit', 'Nothing specific'],
+          1,
+          'A good location combines existing footfall, visibility/memorability, and a sense of trust and safety.'),
+      _q('Does the busiest, most expensive spot always win?',
+          ['Yes, always', 'No — high rent or heavy competition can make it perform worse than a cheaper spot', 'Only on weekends', 'Busiest spots are always free'],
+          1,
+          'A location\'s value depends on the balance between traffic and what you pay for it, not raw traffic alone.'),
+      _q('What is the "traffic-to-cost ratio"?',
+          ['Your fee percentage', 'The balance between how much footfall a spot gets and what it costs to be there', 'A tax calculation', 'The number of competitors nearby'],
+          1,
+          'This ratio is the real metric for judging location value, rather than traffic or cost in isolation.'),
+      _q('What can happen with a high-traffic location that has unsustainable rent?',
+          ['It always performs best', 'It can underperform a quieter, lower-cost spot', 'Rent never affects performance', 'Customers pay your rent for you'],
+          1,
+          'If rent eats too much of your margin, high traffic alone doesn\'t guarantee the location is actually the best choice.'),
+      _q('Why does visibility matter for a stand\'s location?',
+          ['It doesn\'t matter', 'It makes you easy to find and return to, building repeat business', 'It only matters for large businesses', 'It increases your fees automatically'],
+          1,
+          'Being easy to spot and remember helps convert passersby into repeat, loyal customers.'),
+      _q('What role does "trust" play in location choice?',
+          ['None', 'A visible, established-looking spot in a busy area feels safer to transact with', 'Trust is unrelated to physical location', 'Only paperwork builds trust'],
+          1,
+          'Customers are more comfortable handing over cash or cards at a stand that looks established and is in a visible, active area.'),
+      _q('What should you avoid doing when picking a location?',
+          ['Comparing traffic and cost carefully', 'Picking based purely on gut feeling without evaluation', 'Considering rent at all', 'Visiting the location beforehand'],
+          1,
+          'This course emphasizes an objective evaluation framework rather than relying on instinct alone.'),
+      _q('What does this lesson say the rest of the course will provide?',
+          ['A list of locations to avoid', 'A framework for reading traffic, competition, negotiation, and adjustment', 'A guaranteed profitable address', 'Nothing further'],
+          1,
+          'The course builds out a structured way to evaluate and choose (and later adjust) your location.'),
+      _q('What is the main point of this opening lesson?',
+          ['Location doesn\'t matter much', 'Location is one of the biggest levers on your income and deserves careful evaluation', 'Only rent matters', 'All locations perform equally'],
+          1,
+          'The lesson establishes why location deserves deliberate, structured evaluation rather than a casual choice.'),
+    ]),
+    _lesson('c10', 2, 'Reading Foot Traffic and Demographics', 6, [
+      'Foot traffic is not just "how many people pass by" — it is about how '
+          'many of those people are your kind of customer, at the times you '
+          'will actually be open. A spot with huge traffic at 2am is useless '
+          'if you close at 8pm. A spot full of tourists passing through once '
+          'is different from one full of local residents who will pass by '
+          'daily.',
+      'Spend time actually observing a potential location before committing. '
+          'Visit at different times of day — morning rush, midday lull, '
+          'evening peak — and different days, including a market day or '
+          'salary-week Friday if relevant. Count roughly how many people pass '
+          'in a 15-minute window at each time, and note what they seem to be '
+          'doing: commuting, shopping, waiting for transport.',
+      'Demographics matter as much as raw numbers. A spot near a school will '
+          'have heavy youth traffic with low individual spending; a spot near '
+          'an office cluster will have fewer people but higher spending power '
+          'and more predictable timing (lunch break, closing time). Match the '
+          'location\'s demographic to the services you offer — POS cash-out '
+          'does especially well near markets and transport hubs where people '
+          'carry and need cash regularly.',
+      'Also look for "anchor" points nearby — a bank branch, a popular '
+          'market stall, a bus stop, a school gate. These anchors create '
+          'reliable, repeating foot traffic patterns you can plan your hours '
+          'and float around, rather than hoping for random passersby.',
+    ], concepts: [
+      KeyConcept('Relevant Traffic, Not Raw Traffic',
+          'What matters is how many of the right customers pass by during your actual operating hours.'),
+      KeyConcept('Anchor Points',
+          'Nearby fixtures like bus stops, markets, or schools create predictable, repeating foot traffic you can plan around.'),
+    ], steps: [
+      'Visit your shortlisted location at 3 different times of day and count passersby for 15 minutes each time.',
+      'Identify at least one anchor point near each location you are considering.',
+    ], takeaways: [
+      'Foot traffic only matters if it happens during your actual operating hours.',
+      'Match the location\'s demographic (students, workers, market-goers) to your services.',
+      'Anchor points nearby create predictable, repeating traffic you can plan around.',
+    ], quiz: [
+      _q('Why is raw foot traffic count alone not enough to judge a location?',
+          ['It is always enough', 'Traffic needs to match your operating hours and target customer type', 'Traffic count is impossible to measure', 'Only rent matters'],
+          1,
+          'High traffic at times you\'re closed, or traffic that isn\'t your kind of customer, doesn\'t translate to sales.'),
+      _q('What is recommended before committing to a location?',
+          ['Signing immediately to secure it', 'Observing the spot at different times and days first', 'Asking only the landlord\'s opinion', 'Choosing based on price alone'],
+          1,
+          'Direct observation at varying times reveals real patterns that a single visit or assumption would miss.'),
+      _q('Why observe a spot on a market day or salary-week Friday specifically?',
+          ['These days are irrelevant', 'These are often peak-traffic days worth understanding for planning', 'It is required by law', 'To avoid customers entirely'],
+          1,
+          'Special high-traffic days reveal peak demand patterns important for float and staffing planning.'),
+      _q('Why do demographics matter alongside raw traffic numbers?',
+          ['They don\'t matter', 'Different customer types have different spending power and needs', 'All customers spend identically', 'Demographics only matter for large businesses'],
+          1,
+          'A school-heavy area behaves very differently from an office-heavy area in spending patterns and timing.'),
+      _q('Where does POS cash-out business tend to do especially well?',
+          ['Empty residential streets', 'Near markets and transport hubs where people need cash regularly', 'Only inside malls', 'Only near hospitals'],
+          1,
+          'Markets and transport hubs create consistent cash-need moments that suit a POS stand well.'),
+      _q('What is an "anchor point"?',
+          ['A type of POS machine', 'A nearby fixture like a bus stop or market that creates predictable traffic', 'A legal registration requirement', 'A pricing strategy'],
+          1,
+          'Anchors are nearby draws that reliably bring the same kind of traffic past your stand repeatedly.'),
+      _q('Why are anchor points useful for planning?',
+          ['They aren\'t useful', 'They create traffic patterns you can plan your hours and float around', 'They eliminate the need for float', 'They guarantee zero competition'],
+          1,
+          'Predictable traffic from anchors lets you plan staffing, hours, and cash float with more confidence.'),
+      _q('What might a spot near an office cluster offer compared to one near a school?',
+          ['Identical customer behavior', 'Fewer people, but higher spending power and predictable timing', 'No customers at all', 'Only youth customers'],
+          1,
+          'Office areas tend to have concentrated, predictable peaks (lunch, closing time) with higher individual spending.'),
+      _q('What should you note when counting passersby during observation?',
+          ['Nothing beyond the count', 'What people seem to be doing — commuting, shopping, waiting for transport', 'Only their clothing', 'Only their age'],
+          1,
+          'Understanding *why* people are passing through helps judge whether they are your kind of potential customer.'),
+      _q('What is the main lesson about matching location to services?',
+          ['All locations suit all services equally', 'The location\'s demographic should match the services you actually offer', 'Only price should guide the match', 'Services should be chosen after signing a lease'],
+          1,
+          'Aligning what a location naturally attracts with what you actually sell increases your chances of success.'),
+    ]),
+    _lesson('c10', 3, 'Evaluating Competition Nearby', 5, [
+      'Competition is not automatically bad news. A cluster of similar '
+          'stands can mean the area is proven to support this kind of '
+          'business — customers already come there expecting to find agents '
+          'like you. The real question is not "is there competition" but '
+          '"is there room for another agent, and can I differentiate enough '
+          'to earn a fair share."',
+      'Walk the immediate area and count how many similar stands are within '
+          'easy walking distance. Observe them for a while: are they '
+          'constantly busy, or often idle? Busy competitors suggest strong '
+          'demand that may support more supply; consistently idle '
+          'competitors suggest the area may already be saturated.',
+      'Look closely at what existing agents are doing well and poorly. Are '
+          'they slow, rude, frequently out of float, limited in services '
+          '(airtime only, no POS)? Gaps like these are opportunities — you '
+          'can win customers by being faster, friendlier, better stocked, or '
+          'offering a wider range of services than what is already there.',
+      'If an area is genuinely saturated with strong, well-run competitors '
+          'and no clear gap, it may be smarter to look elsewhere rather than '
+          'fight for scraps of an already-served market. Sometimes the best '
+          'move is a nearby underserved spot rather than head-to-head '
+          'competition in the busiest block.',
+    ], concepts: [
+      KeyConcept('Competition as a Demand Signal',
+          'A cluster of similar businesses often proves the area supports this kind of demand, not that it\'s automatically bad.'),
+      KeyConcept('Find the Service Gap',
+          'Slow, limited, or unreliable existing agents create room for you to win customers by doing it better.'),
+    ], steps: [
+      'Count competing stands within easy walking distance of your target location.',
+      'Observe each competitor for 20-30 minutes and note whether they look consistently busy or idle.',
+      'List at least 2 specific gaps (service, speed, reliability) you could fill better than existing agents.',
+    ], takeaways: [
+      'Competition can signal proven demand — the real question is whether there\'s room and a way to differentiate.',
+      'Busy competitors suggest demand that may support more supply; idle ones suggest saturation.',
+      'Look for gaps in service, speed, or reliability that you can exploit.',
+    ], quiz: [
+      _q('Is competition nearby automatically a bad sign?',
+          ['Yes, always avoid it', 'No — it can signal the area supports this kind of business', 'It has no meaning either way', 'It always means the market is full'],
+          1,
+          'A cluster of similar stands often proves customers already expect and seek out this kind of business there.'),
+      _q('What is the real question to ask about competition?',
+          ['Whether competition exists at all', 'Whether there is room for another agent and a way to differentiate', 'Whether competitors are friendly', 'Whether competitors use the same POS provider'],
+          1,
+          'The presence of competition matters less than whether there\'s room and a differentiation strategy.'),
+      _q('What does it suggest if competing stands are constantly busy?',
+          ['The area is oversaturated', 'Strong demand that may support more supply', 'Customers dislike the area', 'Prices are too high'],
+          1,
+          'Consistently busy competitors are a positive demand signal, suggesting the market can potentially support you too.'),
+      _q('What does it suggest if competing stands are often idle?',
+          ['High unmet demand', 'The area may already be saturated', 'The stands are new', 'Nothing meaningful'],
+          1,
+          'Idle competitors can be a warning sign that supply already exceeds demand in that spot.'),
+      _q('What should you look for in existing agents\' weaknesses?',
+          ['Nothing, weaknesses don\'t matter', 'Gaps like slowness, limited services, or frequent float shortages — opportunities for you', 'Only their pricing', 'Their personal appearance'],
+          1,
+          'Weaknesses in existing agents represent openings you can exploit by doing those things better.'),
+      _q('How can you win customers in a competitive area?',
+          ['By copying competitors exactly', 'By being faster, friendlier, better stocked, or offering more services', 'By lowering fees to zero', 'By avoiding all customers'],
+          1,
+          'Differentiating on speed, service quality, reliability, or range of offerings helps you earn share in a competitive spot.'),
+      _q('What should you do if an area is saturated with strong, well-run competitors?',
+          ['Fight for scraps of the market regardless', 'Consider a nearby underserved spot instead', 'Immediately lower your fees to zero', 'Give up on the business entirely'],
+          1,
+          'Sometimes it\'s smarter to find an underserved nearby spot than compete head-to-head where supply already meets demand well.'),
+      _q('What is a practical first step for evaluating competition?',
+          ['Ignoring nearby stands entirely', 'Walking the area and counting similar stands within easy distance', 'Only asking friends about the area', 'Assuming there is no competition'],
+          1,
+          'A direct walk-through and count gives you a real picture of how crowded the competitive landscape actually is.'),
+      _q('Why is observing competitors over time useful?',
+          ['It isn\'t useful', 'It reveals whether they are consistently busy or idle, indicating demand levels', 'It only reveals their fees', 'It has no bearing on your decision'],
+          1,
+          'Extended observation gives a more accurate read on demand than a single glance at a busy or quiet moment.'),
+      _q('What is the overall theme of this lesson on competition?',
+          ['Avoid all areas with any competition', 'Competition is data — read it to find demand signals and gaps to exploit', 'Competition guarantees failure', 'Competition is irrelevant to location choice'],
+          1,
+          'The lesson frames competition as useful information rather than a simple red flag to avoid.'),
+    ]),
+    _lesson('c10', 4, 'Negotiating Rent and Space', 5, [
+      'Once you have identified a promising spot, negotiating the terms — '
+          'rent, space size, duration, what happens if you want to leave '
+          'early — directly affects your profitability from day one. Many '
+          'new agents accept the first price offered simply because they are '
+          'eager to start, and end up locked into terms that squeeze their '
+          'margin for months.',
+      'Before negotiating, know your numbers: what daily revenue you '
+          'realistically expect from this location based on your traffic '
+          'observation, and what percentage of that revenue you are willing '
+          'to spend on rent. A common guideline is keeping rent well under '
+          '15-20% of expected revenue, though this varies by business type '
+          'and local market rates.',
+      'Ask around for what similar spaces nearby actually rent for — '
+          'landlords sometimes quote higher to new or eager-looking tenants. '
+          'Having a comparison figure from a neighboring shop owner or '
+          'another agent gives you real leverage and prevents overpaying '
+          'simply because you didn\'t know the going rate.',
+      'Negotiate more than just the headline rent figure. Ask about the '
+          'length of commitment required, whether there is a deposit and how '
+          'refundable it is, who covers repairs to fixtures like a shelter or '
+          'canopy, and what notice period is needed if you need to leave. '
+          'These terms matter as much as the monthly figure when things don\'t '
+          'go as planned.',
+    ], concepts: [
+      KeyConcept('Rent-to-Revenue Ceiling',
+          'Set a personal limit (commonly under 15-20% of expected revenue) for what you\'ll pay in rent before you start negotiating.'),
+      KeyConcept('Negotiate Terms, Not Just Price',
+          'Deposit refundability, commitment length, and exit notice matter as much as the monthly rent figure.'),
+    ], steps: [
+      'Estimate realistic daily/monthly revenue for the location before any rent conversation.',
+      'Ask at least one nearby shop owner or agent what similar space actually costs.',
+      'Write down your rent ceiling and your minimum acceptable exit terms before negotiating.',
+    ], takeaways: [
+      'Know your expected revenue and rent ceiling before you start negotiating, not during.',
+      'Comparison figures from nearby tenants give you real negotiating leverage.',
+      'Negotiate commitment length, deposit terms, and exit notice — not just the headline rent.',
+    ], quiz: [
+      _q('Why do many new agents end up with poor rental terms?',
+          ['Landlords are always dishonest', 'They accept the first price offered out of eagerness to start', 'Rent is always fixed by law', 'It is impossible to negotiate rent'],
+          1,
+          'Eagerness to begin operating often leads new agents to skip negotiation entirely, locking in worse terms.'),
+      _q('What should you know before entering a rent negotiation?',
+          ['Nothing, just negotiate on instinct', 'Your realistically expected revenue and your rent ceiling', 'Only the landlord\'s asking price', 'Your competitor\'s exact profits'],
+          1,
+          'Knowing your numbers gives you a clear, defensible position rather than negotiating blind.'),
+      _q('What is a common guideline mentioned for rent as a share of expected revenue?',
+          ['50-60%', 'Well under 15-20%', 'Exactly 100%', 'There is no useful guideline'],
+          1,
+          'Keeping rent to a modest share of expected revenue protects your overall margin.'),
+      _q('Why ask nearby shop owners what similar spaces rent for?',
+          ['It is rude to ask', 'It gives you a comparison figure and real negotiating leverage', 'It has no effect on negotiation', 'Landlords always tell the truth about pricing'],
+          1,
+          'A real comparison prevents overpaying due to inflated quotes given to eager or new tenants.'),
+      _q('What terms besides monthly rent should be negotiated?',
+          ['None, only rent matters', 'Commitment length, deposit refundability, and exit notice period', 'Only the paint color', 'The landlord\'s personal schedule'],
+          1,
+          'These terms materially affect your flexibility and risk if the location doesn\'t work out as planned.'),
+      _q('Why does deposit refundability matter?',
+          ['It never matters', 'It affects how much money you can recover if you need to leave', 'Deposits are always non-refundable everywhere', 'It only affects landlords'],
+          1,
+          'Knowing whether and how a deposit is refundable protects your capital if plans change.'),
+      _q('Why is a shorter or clearer exit notice period valuable?',
+          ['It has no value', 'It gives you flexibility if the location underperforms', 'It guarantees higher revenue', 'It eliminates rent entirely'],
+          1,
+          'Clear, reasonable exit terms reduce your risk if a location doesn\'t perform as expected.'),
+      _q('Who is often responsible for fixture repairs (like a shelter or canopy) and why should this be clarified?',
+          ['It never needs clarifying', 'Responsibility should be agreed upfront to avoid disputes later', 'The government always covers this', 'Fixtures never need repair'],
+          1,
+          'Clarifying repair responsibility upfront avoids costly disputes or surprises down the line.'),
+      _q('What mistake does eagerness to start often cause?',
+          ['Better negotiating outcomes', 'Accepting unfavorable terms without comparison or negotiation', 'Lower rent automatically', 'No mistake at all'],
+          1,
+          'Rushing to start can mean skipping the research and negotiation that protects your margin long-term.'),
+      _q('What is the overall goal of this lesson?',
+          ['To avoid renting space entirely', 'To negotiate rent and terms deliberately, based on real numbers and comparisons', 'To always accept the landlord\'s first offer', 'To ignore lease terms beyond price'],
+          1,
+          'The lesson pushes for informed, deliberate negotiation rather than accepting terms passively.'),
+    ]),
+    _lesson('c10', 5, 'Testing and Adjusting Your Location', 5, [
+      'Even careful evaluation cannot guarantee a location performs exactly '
+          'as expected once you are actually operating. Real customer '
+          'behavior, seasonal shifts, and changes nearby (a competitor '
+          'opening, a road diversion) can all affect performance in ways '
+          'that are hard to predict from observation alone. This is why '
+          'treating your first weeks as a genuine test, not a final verdict, '
+          'matters.',
+      'Set a fair evaluation window — often 4 to 8 weeks — before deciding '
+          'whether a location is working. Track your actual daily revenue, '
+          'transaction count, and peak hours against what you originally '
+          'expected. A slow first week or two is normal as customers '
+          'discover and build trust in a new stand; a consistently weak '
+          'month is a clearer signal.',
+      'If performance is below expectations, diagnose before abandoning the '
+          'spot. Is the issue visibility (people don\'t notice you), hours '
+          '(you\'re open at the wrong times), service gaps (missing something '
+          'customers want), or genuinely insufficient traffic? Each of these '
+          'has a different fix — better signage, adjusted hours, added '
+          'services — that\'s cheaper than relocating entirely.',
+      'If after honest adjustment attempts the location still underperforms, '
+          'it is better to relocate early than to keep absorbing losses out '
+          'of stubbornness or sunk-cost thinking. The capital and time saved '
+          'by cutting a genuinely bad location short is worth more than '
+          'proving a point about a spot that simply isn\'t working.',
+    ], concepts: [
+      KeyConcept('Fair Evaluation Window',
+          'Give a new location 4-8 weeks before judging performance — early weeks are naturally slower as trust builds.'),
+      KeyConcept('Diagnose Before You Relocate',
+          'Visibility, hours, and service gaps are cheaper fixes than moving — rule these out before assuming the spot itself is bad.'),
+    ], steps: [
+      'Set a specific evaluation date (4-8 weeks out) before you open, and commit to reviewing honestly then.',
+      'Track daily revenue and transaction count from day one so you have real data to review.',
+      'If underperforming, list possible causes (visibility, hours, services) before considering relocation.',
+    ], takeaways: [
+      'Treat your first weeks at a new location as a genuine test, not a final judgment.',
+      'A slow start is normal; a consistently weak month over a fair window is a clearer signal.',
+      'Diagnose fixable issues (visibility, hours, services) before assuming you need to relocate.',
+    ], quiz: [
+      _q('Why can\'t careful evaluation alone guarantee a location\'s performance?',
+          ['Evaluation is always perfectly accurate', 'Real customer behavior, seasonality, and nearby changes are hard to predict in advance', 'Locations never change', 'It can always guarantee performance'],
+          1,
+          'Actual operation reveals things (seasonal shifts, new competitors, etc.) that observation alone can\'t fully predict.'),
+      _q('What is the recommended fair evaluation window before judging a location?',
+          ['1-2 days', '4 to 8 weeks', 'A single afternoon', '2 years minimum'],
+          1,
+          'This window balances giving the location a fair chance against not dragging out a genuinely bad decision.'),
+      _q('Why is a slow first week or two often normal?',
+          ['It never happens', 'Customers need time to discover and build trust in a new stand', 'It means the location is definitely bad', 'It means fees are too high'],
+          1,
+          'New stands take time to become known and trusted, so early slowness alone isn\'t a reliable signal.'),
+      _q('What should you do before deciding a location has failed?',
+          ['Relocate immediately at any sign of slowness', 'Diagnose whether the issue is visibility, hours, or service gaps', 'Nothing, just wait indefinitely', 'Raise your fees dramatically'],
+          1,
+          'Diagnosing the actual cause helps you find a cheaper fix than relocating, if one exists.'),
+      _q('What is an example of a "visibility" problem at a location?',
+          ['Too many customers', 'People simply don\'t notice your stand', 'Rent is too low', 'Competitors are too friendly'],
+          1,
+          'If people don\'t notice you exist, better signage or positioning may solve the problem without moving.'),
+      _q('Why might being open at the wrong hours hurt performance?',
+          ['Hours never matter', 'You could be missing the actual peak traffic times for that location', 'Customers prefer closed stands', 'It has no effect on revenue'],
+          1,
+          'If your hours don\'t align with the real peak traffic pattern, you miss the customers who are actually there.'),
+      _q('What is a cheaper fix than relocating, if service gaps are the issue?',
+          ['Nothing can be done', 'Adding the missing service customers are asking for', 'Immediately closing the business', 'Doubling your fees'],
+          1,
+          'Filling a specific gap in what you offer is often far cheaper and faster than relocating entirely.'),
+      _q('When should you consider relocating despite honest adjustment attempts?',
+          ['Never, always stay no matter what', 'If the location still underperforms after fixing visibility, hours, and service gaps', 'Immediately, without trying fixes first', 'Only if a competitor asks you to'],
+          1,
+          'Relocation becomes the right call once genuine fixes have been tried and the spot still isn\'t working.'),
+      _q('What is "sunk-cost thinking" a risk of, in this context?',
+          ['Making good decisions faster', 'Staying in a bad location too long just because you\'ve already invested in it', 'Choosing a location too quickly', 'Negotiating rent too aggressively'],
+          1,
+          'Sunk-cost thinking can trap you into continuing to absorb losses rather than cutting a bad location short.'),
+      _q('What is the overall message of this final lesson?',
+          ['Once chosen, never reconsider a location', 'Track real performance, diagnose issues fairly, and be willing to adjust or relocate if needed', 'Location choice has no long-term consequences', 'Always relocate after one bad day'],
+          1,
+          'The lesson closes the course by emphasizing ongoing evaluation and willingness to adjust, not a one-time decision.'),
+    ]),
+  ],
+);
+
 final List<Course> kCourses = [
   _course1,
   _course2,
@@ -3494,6 +3905,7 @@ final List<Course> kCourses = [
   _course7,
   _course8,
   _course9,
+  _course10,
 ];
 
 Course courseById(String id) => kCourses.firstWhere((c) => c.id == id);
