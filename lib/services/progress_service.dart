@@ -36,6 +36,7 @@ const List<DailyQuest> kDailyQuests = [
   DailyQuest('tool_checklist', 'Check off a Business Checklist step', Icons.checklist_rounded),
   DailyQuest('tool_customers', 'Add a customer record', Icons.contacts_rounded),
   DailyQuest('tool_goals', 'Update your Goal Tracker', Icons.flag_rounded),
+  DailyQuest('tool_business_plan', 'Try the Business Plan Builder', Icons.description_rounded),
   DailyQuest('achievements', 'Check your Achievements page', Icons.emoji_events_rounded),
   DailyQuest('community', 'Visit the Community tab', Icons.groups_rounded),
 ];
