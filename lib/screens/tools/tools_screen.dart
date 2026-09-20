@@ -8,6 +8,9 @@ import 'pricing_calculator.dart';
 import 'business_checklist.dart';
 import 'customer_records.dart';
 import 'goal_tracker.dart';
+import 'savings_calculator.dart';
+import 'breakeven_calculator.dart';
+import 'business_plan_builder.dart';
 
 class ToolDef {
   final String id;
@@ -43,6 +46,12 @@ class _ToolsScreenState extends State<ToolsScreen> {
         Icons.contacts_rounded, AppColors.primaryDark, () => const CustomerRecords()),
     ToolDef('goals', 'Goal Tracker', 'Hit weekly targets',
         Icons.flag_rounded, AppColors.gold, () => const GoalTracker()),
+    ToolDef('savings', 'Savings Calculator', 'Reach your savings goal',
+        Icons.savings_rounded, AppColors.accentEmerald, () => const SavingsCalculator()),
+    ToolDef('breakeven', 'Break-Even Calculator', 'Units to turn a profit',
+        Icons.balance_rounded, AppColors.primaryDark, () => const BreakevenCalculator()),
+    ToolDef('business_plan', 'Business Plan Builder', 'Build your first real plan',
+        Icons.description_rounded, AppColors.gold, () => const BusinessPlanBuilder()),
   ];
 
   @override

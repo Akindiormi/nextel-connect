@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/user.dart';
+import 'notification_service.dart';
 
 /// Owns the user profile, auth flag, onboarding flag and app-wide preferences
 /// (dark mode + notifications). A singleton [ChangeNotifier] so any screen can
@@ -41,6 +42,10 @@ class UserService extends ChangeNotifier {
     if (raw != null) {
       _user = AppUser.fromMap(jsonDecode(raw) as Map<String, dynamic>);
     }
+    if (_notifications) {
+      // Fire and forget: top up the scheduled reminder window on launch.
+      NotificationService.instance.scheduleAll();
+    }
   }
 
   Future<void> completeOnboarding() async {
@@ -76,6 +81,11 @@ class UserService extends ChangeNotifier {
   Future<void> setNotifications(bool value) async {
     _notifications = value;
     await _prefs.setBool(_kNotifications, value);
+    if (value) {
+      await NotificationService.instance.scheduleAll();
+    } else {
+      await NotificationService.instance.cancelAll();
+    }
     notifyListeners();
   }
 }

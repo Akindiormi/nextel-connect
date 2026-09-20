@@ -138,6 +138,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 20),
 
+          // Today's quest
+          FadeSlideIn(
+            delay: const Duration(milliseconds: 160),
+            child: _DailyQuestCard(progress: _progress),
+          ),
+          const SizedBox(height: 20),
+
           // Stats row
           FadeSlideIn(
             delay: const Duration(milliseconds: 200),
@@ -511,6 +518,90 @@ class _TipCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _DailyQuestCard extends StatefulWidget {
+  final ProgressService progress;
+  const _DailyQuestCard({required this.progress});
+
+  @override
+  State<_DailyQuestCard> createState() => _DailyQuestCardState();
+}
+
+class _DailyQuestCardState extends State<_DailyQuestCard> {
+  bool _celebrating = false;
+
+  Future<void> _complete() async {
+    final gained = await widget.progress.completeTodaysQuest();
+    if (gained > 0 && mounted) {
+      setState(() => _celebrating = true);
+      Future.delayed(const Duration(milliseconds: 900), () {
+        if (mounted) setState(() => _celebrating = false);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final quest = widget.progress.todaysQuest;
+    final done = widget.progress.questDoneToday;
+
+    return GlassCard(
+      padding: const EdgeInsets.all(16),
+      radius: 20,
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: (done ? AppColors.success : AppColors.gold)
+                  .withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Icon(
+              done ? Icons.check_circle_rounded : quest.icon,
+              color: done ? AppColors.success : AppColors.gold,
+              size: 26,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("TODAY'S QUEST",
+                    style: AppText.label(context,
+                        size: 11, color: AppColors.accentEmerald)),
+                const SizedBox(height: 2),
+                Text(quest.title, style: AppText.heading(context, size: 15)),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          if (done)
+            Text(_celebrating ? '+$kQuestXp XP' : 'Done',
+                style: AppText.label(context,
+                    size: 12, color: AppColors.success))
+          else
+            GestureDetector(
+              onTap: _complete,
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                decoration: BoxDecoration(
+                  gradient: AppGradients.primaryButton,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Text('Mark done',
+                    style: AppText.label(context,
+                        size: 12, color: Colors.white)),
+              ),
+            ),
+        ],
       ),
     );
   }
